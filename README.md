@@ -1,0 +1,3 @@
+# Project setup
+
+npm install
