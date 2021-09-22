@@ -7,7 +7,7 @@ const getData = async (userId) => {
     );
 
     const { data: userPosts } = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts?userId=${userId}` //To get users posts
+      `https://jsonplaceholder.typicode.com/posts?userId=${userId}` // To get users posts
     );
 
     return {
