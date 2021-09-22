@@ -1,19 +1,21 @@
-import "regenerator-runtime/runtime";
 import axios from "axios";
 
-async function getData(userId) {
-  let data = null;
+const getData = async (userId) => {
+  try {
+    const { data: user } = await axios.get(
+      `https://jsonplaceholder.typicode.com/users/${userId}`
+    );
 
-  await axios
-    .get(`https://jsonplaceholder.typicode.com/users/${userId}`)
-    .then((res) => {
-      data = res.data;
-    });
-  await axios
-    .get(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
-    .then((res) => {
-      data.posts = res.data;
-    });
-  return data;
-}
+    const { data: userPosts } = await axios.get(
+      `https://jsonplaceholder.typicode.com/posts?userId=${userId}` //To get users posts
+    );
+
+    return {
+      ...user,
+      userPosts,
+    };
+  } catch (err) {
+    return err.message;
+  }
+};
 export default getData;

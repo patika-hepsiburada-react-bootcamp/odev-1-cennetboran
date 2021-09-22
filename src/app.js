@@ -1,5 +1,4 @@
 import getData from "./lib/service.js";
 
-getData(2).then((res) => {
-  console.log(res);
-});
+const data = await getData(2);
+console.log(data);
